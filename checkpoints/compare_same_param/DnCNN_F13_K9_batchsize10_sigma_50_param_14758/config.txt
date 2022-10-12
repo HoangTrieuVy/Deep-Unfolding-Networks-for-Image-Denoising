@@ -1,0 +1,41 @@
+Net(DnCNN(
+  (mse): MSELoss()
+  (conv): ModuleList(
+    (0): Conv2d(3, 13, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (1): Conv2d(13, 13, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (2): Conv2d(13, 13, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (3): Conv2d(13, 13, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): Conv2d(13, 13, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): Conv2d(13, 13, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (6): Conv2d(13, 13, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (7): Conv2d(13, 13, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (8): Conv2d(13, 13, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (9): Conv2d(13, 13, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (10): Conv2d(13, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  )
+  (bn): ModuleList(
+    (0): BatchNorm2d(13, eps=13, momentum=0.1, affine=True, track_running_stats=True)
+    (1): BatchNorm2d(13, eps=13, momentum=0.1, affine=True, track_running_stats=True)
+    (2): BatchNorm2d(13, eps=13, momentum=0.1, affine=True, track_running_stats=True)
+    (3): BatchNorm2d(13, eps=13, momentum=0.1, affine=True, track_running_stats=True)
+    (4): BatchNorm2d(13, eps=13, momentum=0.1, affine=True, track_running_stats=True)
+    (5): BatchNorm2d(13, eps=13, momentum=0.1, affine=True, track_running_stats=True)
+    (6): BatchNorm2d(13, eps=13, momentum=0.1, affine=True, track_running_stats=True)
+    (7): BatchNorm2d(13, eps=13, momentum=0.1, affine=True, track_running_stats=True)
+    (8): BatchNorm2d(13, eps=13, momentum=0.1, affine=True, track_running_stats=True)
+  )
+))
+TrainSet(NoisyBSDSDataset(mode=train, image_size=(180, 180), sigma=50))
+ValSet(NoisyBSDSDataset(mode=test, image_size=(320, 320), sigma=50))
+Optimizer(Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    weight_decay: 0
+))
+StatsManager(DenoisingStatsManager)
+BatchSize(10)
+PerformValidationDuringTraining(True)
+
