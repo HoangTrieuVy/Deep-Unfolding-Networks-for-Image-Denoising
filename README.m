@@ -13,8 +13,11 @@ EUSIPCO 2021, [Download]([http://bigwww.epfl.ch/publications/hohm1501.pdf](https
 ## Install requirements:
 pip install -r requirements.txt
 
-## Training and testing
+## Training and testing: ( some specific parameters )
 - model: DnCNN, unfolded_ISTA, unfolded_FISTA, unfolded_CP_v2, unfolded_CP_v3
+- F: size of linear operator or number of features of convolution operators
+- K: depth of networks
+- sigma: noise level (default=50)
 
 Example: python main.py --model unfolded_CP_v2 --F 21 --K 13 --lr 1e-4 --batch_size 10 --sigma 50 --num_epochs 500
 
