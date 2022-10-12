@@ -1,6 +1,6 @@
 # Deep unfolding neural networks for image denoising
 
-> **Hoang Trieu Vy Le, Nelly Pustelnik, Marion Foare,**
+> **Hoang Trieu Vy Le, [Nelly Pustelnik](https://perso.ens-lyon.fr/nelly.pustelnik/), [Marion Foare](https://perso.ens-lyon.fr/marion.foare/),**
 *The faster proximal algorithm, the better unfolded deep learning architecture ? The study case of image denoising,*
 EUSIPCO 2021, [Download]([http://bigwww.epfl.ch/publications/hohm1501.pdf](https://hal.archives-ouvertes.fr/hal-03621538/document))
 
