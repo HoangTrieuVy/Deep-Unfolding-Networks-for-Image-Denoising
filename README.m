@@ -20,5 +20,14 @@ Example: python main.py --model unfolded_CP_v2 --F 21 --K 13 --lr 1e-4 --batch_s
 
 ## Plot results:
 Using matlab for visualizing results:
-	- Choose model name and parameters corresponding to previous step and run
- 					plot_results_unrolling_model.m
+- Choose model name and parameters corresponding to previous step and run
+ 	plot_results_unrolling_model.m
+	
+## Some pretrained model examples:
+
+- DnCNN K=9 F=13: 
+ python main.py --model DnCNN --F 13 --K 9 --batch_size 10 --sigma 50 --num_epochs 500
+- ISTA K=13 F=21: 
+ python main.py --model DnCNN --F 21 --K 13 --batch_size 10 --sigma 50 --num_epochs 500
+- unfolded Chambolle Pock with strong convexity K=13 F=21: 
+ python main.py --model DnCNN --F 21 --K 13 --batch_size 10 --sigma 50 --num_epochs 500
