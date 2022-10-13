@@ -8,7 +8,7 @@ import scipy.io
 import os
 from prettytable import PrettyTable
 
-def count_parameters(model,pr=True):
+def count_parameters(model,print_table=True,namenet=''):
     table = PrettyTable(["Modules", "Parameters"])
     total_params = 0
     for name, parameter in model.named_parameters():
@@ -16,9 +16,9 @@ def count_parameters(model,pr=True):
         param = parameter.numel()
         table.add_row([name, param])
         total_params+=param
-    if pr == True:
+    if print_table == True:
         print(table)
-        print(f"Total Trainable Params: {total_params}")
+    print(namenet+" has total Trainable Params: ",total_params)
     return total_params
 
 def PSNR(img1, img2):
@@ -65,7 +65,7 @@ def save_compare(exp, noisy,original,model,namefile=''):
                      for k in range(exp.epoch)],
                           CT=[exp.history[k][2]
                      for k in range(exp.epoch)],
-                          nb_param=count_parameters(exp.net,pr=False),
+                          nb_param=count_parameters(exp.net,print_table=False),
                           K=exp.net.K,
                           F=exp.net.F,
                           norm_net=exp.net.norm_net))

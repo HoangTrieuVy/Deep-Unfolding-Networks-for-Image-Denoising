@@ -17,7 +17,7 @@ def parse():
     parser.add_argument('--lr'             , type=float, default=1e-4,help='learning rate')
     parser.add_argument('--image_size'     , type=tuple, default=(180, 180))
     parser.add_argument('--test_image_size', type=tuple, default=(320, 320))
-    parser.add_argument('--batch_size'     , type=int, default=6)
+    parser.add_argument('--batch_size'     , type=int, default=10)
     parser.add_argument('--sigma'           , type=int)
     return parser.parse_args()
 
