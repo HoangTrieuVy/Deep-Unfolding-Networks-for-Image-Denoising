@@ -23,21 +23,19 @@ pip install -r requirements.txt  # install
 <details open>
 <summary>Inference Denoiser</summary>
 
-Deep-Unfolded-ISTA, Deep-Unfolded-ISTA, Deep-Unfolded-ISTA, Deep-Unfolded-ISTA. [Checkpoints](https://github.com/HoangTrieuVy/Deep-Unfolding-Networks-for-Image-Denoising/tree/main/checkpoints)
+Choose a pretrained model among {DnCNN, unfolded_ISTA, unfolded_FISTA, unfolded_CP_v2 (strong convexity), unfolded_CP_v3(without SC)} in [Checkpoints](https://github.com/HoangTrieuVy/Deep-Unfolding-Networks-for-Image-Denoising/tree/main/checkpoints)
 
 ```python
-import torch
+python deep_unfolding_denoiser_sig50.py --model DnCNN --F 13 --K 9 --sigma 50 --batch_size 10 --num_epochs 500
 
-# Model
-model = 
+python deep_unfolding_denoiser_sig50.py --model unfolded_ISTA --F 21 --K 13 --sigma 50 --batch_size 10 --num_epochs 500
 
-# Images
-img = 
+python deep_unfolding_denoiser_sig50.py --model unfolded_FISTA --F 21 --K 13 --sigma 50 --batch_size 10 --num_epochs 500
 
-# Inference
-results = model(img)
+python deep_unfolding_denoiser_sig50.py --model unfolded_CP_v2 --F 21 --K 13 --sigma 50 --batch_size 10 --num_epochs 500
 
-# Results
+python deep_unfolding_denoiser_sig50.py --model unfolded_CP_v3 --F 21 --K 13 --sigma 50 --batch_size 10 --num_epochs 500
+
 ```
 
 </details>
@@ -76,22 +74,3 @@ plot_results_unrolling_model.m
 </details>
 
 
-## Some other pretrained model examples:
-
-- DnCNN K=9 F=13: 
-
-```python
-python main.py --model DnCNN --F 13 --K 9 --batch_size 10 --sigma 50 --num_epochs 500
-```
-
-- ISTA K=13 F=21:
-
-```python
-python main.py --model DnCNN --F 21 --K 13 --batch_size 10 --sigma 50 --num_epochs 500
-```
-
-- unfolded Chambolle Pock with strong convexity K=13 F=21: 
-
-```python
-python main.py --model DnCNN --F 21 --K 13 --batch_size 10 --sigma 50 --num_epochs 500
-```
