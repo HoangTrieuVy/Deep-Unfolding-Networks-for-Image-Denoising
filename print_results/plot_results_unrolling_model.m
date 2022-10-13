@@ -35,8 +35,8 @@ if strcmp('10081.mat',file.name) || strcmp('103029.mat',file.name) ||strcmp('106
     end 
     
 name_im= strrep(file.name,'.mat','');
-name_model = 'unfolded_FISTA';
-% name_model = 'unfolded_ISTA';
+% name_model = 'unfolded_FISTA';
+name_model = 'unfolded_ISTA';
 % name_model = 'unfolded_CP_v2';
 
 F= 21;
