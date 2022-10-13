@@ -28,11 +28,11 @@ Choose a pretrained model among {*DnCNN*, *unfolded_ISTA*, *unfolded_FISTA*, *un
 **Inference Settings**
  ```python
  model: DnCNN, unfolded_ISTA, unfolded_FISTA, unfolded_CP_v2, unfolded_CP_v3
- F: size of linear operator or number of features of convolution operators
- K: depth of networks
- sigma: noise level (default=50)
+ F       # size of linear operator or number of features of convolution operators
+ K       # depth of networks
+ sigma   # noise-level (default=50)
  batch_size (default=10)
- lr: learning rate (default=1e-4)
+ lr      # learning-rate (default=1e-4)
  ```
 
 
@@ -83,6 +83,15 @@ Using matlab for visualizing results:
 ```matlab
 plot_results_unrolling_model.m
 ```
+<img align="center" width="500" src="https://github.com/HoangTrieuVy/Deep-Unfolding-Networks-for-Image-Denoising/blob/main/print_results/compare.jpg" >
+
+
+<img align="center" width="500" src="https://github.com/HoangTrieuVy/Deep-Unfolding-Networks-for-Image-Denoising/blob/main/print_results/PSNR_test.jpg" >
+
+<img align="center" width="500" src="https://github.com/HoangTrieuVy/Deep-Unfolding-Networks-for-Image-Denoising/blob/main/print_results/loss_train.jpg" >
+
+
+
 </details>
 
 
