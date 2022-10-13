@@ -6,7 +6,7 @@ argparse== 1.4.0
 Pillow == 9.2.0
 tensorflow-estimator==2.3.0
 gast==0.3.3
-#--extra-index-url https://download.pytorch.org/whl/cu116
+--extra-index-url https://download.pytorch.org/whl/cu116
 torch
 torchvision
 torchaudio
