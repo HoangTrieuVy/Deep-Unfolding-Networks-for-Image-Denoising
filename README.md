@@ -83,7 +83,7 @@ Using matlab for visualizing results:
 ```matlab
 plot_results_unrolling_model.m
 ```
-<img align="center" width="1000" src="https://github.com/HoangTrieuVy/Deep-Unfolding-Networks-for-Image-Denoising/blob/main/print_results/compare.jpg" >
+<img align="center" width="1800" src="https://github.com/HoangTrieuVy/Deep-Unfolding-Networks-for-Image-Denoising/blob/main/print_results/compare.jpg" >
 
 <img align="center" width="500" src="https://github.com/HoangTrieuVy/Deep-Unfolding-Networks-for-Image-Denoising/blob/main/print_results/PSNR_test.jpg" >
 
