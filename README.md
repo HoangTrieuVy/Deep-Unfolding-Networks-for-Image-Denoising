@@ -22,8 +22,19 @@ pip install -r requirements.txt  # install
 </details>
 <details open>
 <summary>Inference Denoiser</summary>
+   
+Choose a pretrained model among {*DnCNN*, *unfolded_ISTA*, *unfolded_FISTA*, *unfolded_CP_v2* (strong convexity), *unfolded_CP_v3*(without SC)} in [Checkpoints](https://github.com/HoangTrieuVy/Deep-Unfolding-Networks-for-Image-Denoising/tree/main/checkpoints) and unfolding networks contains various parameters which are:
+  
+**Inference Settings**
+ ```python
+ model: DnCNN, unfolded_ISTA, unfolded_FISTA, unfolded_CP_v2, unfolded_CP_v3
+ F: size of linear operator or number of features of convolution operators
+ K: depth of networks
+ sigma: noise level (default=50)
+ batch_size (default=10)
+ lr: learning rate (default=1e-4)
+ ```
 
-Choose a pretrained model among {DnCNN, unfolded_ISTA, unfolded_FISTA, unfolded_CP_v2 (strong convexity), unfolded_CP_v3(without SC)} in [Checkpoints](https://github.com/HoangTrieuVy/Deep-Unfolding-Networks-for-Image-Denoising/tree/main/checkpoints)
 
 ```python
 python deep_unfolding_denoiser_sig50.py --model DnCNN --F 13 --K 9 --sigma 50 --batch_size 10 --num_epochs 500
@@ -38,7 +49,11 @@ python deep_unfolding_denoiser_sig50.py --model unfolded_CP_v3 --F 21 --K 13 --s
 
 ```
 
+<img align="center" width="500" src="https://github.com/HoangTrieuVy/Deep-Unfolding-Networks-for-Image-Denoising/blob/main/examples/10081_result.jpg" >
+
+
 </details>
+
 
 <details open>
 <summary>Training</summary>
@@ -54,10 +69,7 @@ python create_training_testing_data.py
 ```
 
 **Training and testing** ( some specific parameters )
-- model: DnCNN, unfolded_ISTA, unfolded_FISTA, unfolded_CP_v2, unfolded_CP_v3
-- F: size of linear operator or number of features of convolution operators
-- K: depth of networks
-- sigma: noise level (default=50)
+
 
 ```python
 python main.py --model unfolded_CP_v2 --F 21 --K 13 --lr 1e-4 --batch_size 10 --sigma 50 --num_epochs 500
