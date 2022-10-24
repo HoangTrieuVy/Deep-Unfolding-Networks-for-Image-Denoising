@@ -1,6 +1,5 @@
 import argparse
 
-
 def parse():
     '''
     Add arguments.
@@ -21,7 +20,12 @@ def parse():
     parser.add_argument('--sigma'           , type=int)
     return parser.parse_args()
 
-
+def parse_for_test():
+    parser = argparse.ArgumentParser(description='For testing inference denoiser')
+    parser.add_argument('--model',type=str,default='DnCNN',help='DnCNN,unfolded_ISTA, unfolded_FISTA, unfolded_CP, unfolded_ScCP')
+    parser.add_argument('--i',type=str,help='original impage path',default=None)
+    parser.add_argument('--n',type=str,help='noisy impage path',default=None)
+    return parser.parse_args()
 class Args():
     '''
     For jupyter notebook

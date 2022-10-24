@@ -18,8 +18,16 @@ def count_parameters(model,print_table=True,namenet=''):
         total_params+=param
     if print_table == True:
         print(table)
-    print(namenet+" has total Trainable Params: ",total_params)
+    # print(namenet+" has total Trainable Params: ",total_params)
     return total_params
+
+def PSNR_np(I,Iref):
+    temp=I.ravel()
+    tempref=Iref.ravel()
+    NbP=I.size
+    EQM=np.sum((temp-tempref)**2)/NbP
+    b=np.max(np.abs(tempref))**2
+    return 10*np.log10(b/EQM)
 
 def PSNR(img1, img2):
     #mse = torch.mean((img1 - img2) ** 2)

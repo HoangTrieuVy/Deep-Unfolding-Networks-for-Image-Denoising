@@ -156,10 +156,10 @@ class unfolded_CP(NNRegressor):
         # K-th layer
         return x1
 
-class unfolded_CP_v2(NNRegressor):
+class unfolded_ScCP(NNRegressor):
 
     def __init__(self, K, F):
-        super(unfolded_CP_v2, self).__init__()
+        super(unfolded_ScCP, self).__init__()
         self.K = K
         self.F = F
         self.norm_net=0

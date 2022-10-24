@@ -337,12 +337,12 @@ def run(args):
         net = unfolded_ISTA(args.K, F=args.F).to(device)
     elif args.model == 'unfolded_FISTA':
         net = unfolded_FISTA(args.K, F=args.F).to(device)
-    elif args.model == 'unfolded_CP_v2':
-        net = unfolded_CP_v2(args.K, F=args.F).to(device)
+    elif args.model == 'unfolded_ScCP':
+        net = unfolded_ScCP(args.K, F=args.F).to(device)
     elif args.model == 'unfolded_CP':
         net = unfolded_CP(args.K, F=args.F).to(device)
-    elif args.model == 'unfolded_CP_v3':
-        net = unfolded_CP_v3(args.K, F=args.F).to(device)
+    elif args.model == 'unfolded_CP':
+        net = unfolded_CP(args.K, F=args.F).to(device)
     elif args.model == 'compare_diff_K':
         # Comparison different number of layer K
         net_DnCNN = DnCNN(K=args.K, F=args.F).to(device)
@@ -360,25 +360,25 @@ def run(args):
         # cp_param=count_parameters(net_unfolded_CP,print_table=False)
         K_CP = int(dncnn_param/(54*args.K+2))
 
-        net_unfolded_CP_v2 = unfolded_CP_v2(K=int(dncnn_param/(54*args.F+2)), F=args.F).to(device)
-        # cpv2_param=count_parameters(net_unfolded_CP_v2,print_table=False)
+        net_unfolded_ScCP = unfolded_ScCP(K=int(dncnn_param/(54*args.F+2)), F=args.F).to(device)
+        # cpv2_param=count_parameters(net_unfolded_ScCP,print_table=False)
 
-        net_unfolded_CP_v3 = unfolded_CP_v3(K=int(dncnn_param/(54*args.F+2)), F=args.F).to(device)
-        # cpv3_param=count_parameters(net_unfolded_CP_v3,print_table=False)
+        net_unfolded_CP = unfolded_CP(K=int(dncnn_param/(54*args.F+2)), F=args.F).to(device)
+        # cpv3_param=count_parameters(net_unfolded_CP,print_table=False)
 
     elif args.model=='compare_grid':
         grid_ISTA =[]
         grid_FISTA=[]
         grid_CP   =[]
-        grid_CP_v2=[]
-        grid_CP_v3=[]
+        grid_ScCP=[]
+        grid_CP=[]
         for K in [5,13,21,29,37]:
             for F in [13,21,29,37,45]:
                 grid_ISTA += [unfolded_ISTA(K=K,F=F).to(device)]
                 grid_FISTA+= [unfolded_FISTA(K=K,F=F).to(device)]
                 grid_CP += [unfolded_CP(K=K,F=F).to(device)]
-                grid_CP_v2+= [unfolded_CP_v2(K=K,F=F).to(device)]
-                grid_CP_v3 += [unfolded_CP_v3(K=K,F=F).to(device)]
+                grid_ScCP+= [unfolded_ScCP(K=K,F=F).to(device)]
+                grid_CP += [unfolded_CP(K=K,F=F).to(device)]
 
     elif args.model == 'compare_same_param':
         # This choice serves to compare models having same number of params but we permute K and F
@@ -394,16 +394,16 @@ def run(args):
         net_unfolded_CP = unfolded_CP(K=13, F=21).to(device)
         # cp_param=count_parameters(net_unfolded_CP,print_table=False)
 
-        net_unfolded_CP_v2 = unfolded_CP_v2(K=13, F=21).to(device)
-        # cp_param=count_parameters(net_unfolded_CP_v2,print_table=False)
+        net_unfolded_ScCP = unfolded_ScCP(K=13, F=21).to(device)
+        # cp_param=count_parameters(net_unfolded_ScCP,print_table=False)
 
-        net_unfolded_CP_v3 = unfolded_CP_v3(K=13, F=21).to(device)
+        net_unfolded_CP = unfolded_CP(K=13, F=21).to(device)
 
         # net_unfolded_ISTA_bis = unfolded_ISTA(K=21, F=13).to(device)
         # net_unfolded_FISTA_bis = unfolded_FISTA(K=21, F=13).to(device)
         # net_unfolded_CP_bis = unfolded_CP(K=21, F=13).to(device)
-        # net_unfolded_CP_v2_bis = unfolded_CP_v2(K=21, F=13).to(device)
-        # net_unfolded_CP_v3_bis = unfolded_CP_v3(K=21, F=13).to(device)
+        # net_unfolded_ScCP_bis = unfolded_ScCP(K=21, F=13).to(device)
+        # net_unfolded_CP_bis = unfolded_CP(K=21, F=13).to(device)
 
     elif args.model == 'compare_diff_F':
         net_DnCNN = DnCNN(K=args.D, F=int(args.F)).to(device)
@@ -419,8 +419,8 @@ def run(args):
         net_unfolded_CP = unfolded_CP(K=args.D, F=int((dncnn_param-2*args.D)/(54*args.D))).to(device)
         # cp_param=count_parameters(net_unfolded_CP,print_table=False)
 
-        net_unfolded_CP_v2 = unfolded_CP_v2(K=args.D, F=int((dncnn_param-2*args.D)/(54*args.D))).to(device)
-        # cp_param=count_parameters(net_unfolded_CP_v2,print_table=False)
+        net_unfolded_ScCP = unfolded_ScCP(K=args.D, F=int((dncnn_param-2*args.D)/(54*args.D))).to(device)
+        # cp_param=count_parameters(net_unfolded_ScCP,print_table=False)
     elif args.model == 'compare_custom':
         net_DnCNN = DnCNN(args.K, F=args.F).to(device)
         net_unfolded_ISTA = unfolded_ISTA(args.K, F=args.F).to(device)
@@ -453,16 +453,16 @@ def run(args):
             save_compare(exp,noisy=noise_im,original=org_im,model=args.model,namefile=namefile)
 
     elif args.model=='compare_same_param':
-        # net_name = ["DnCNN","unfolded_CP_v3","unfolded_CP_v2","unfolded_FISTA","unfolded_ISTA","unfolded_CP",
-        #             "unfolded_CP_v3_bis","unfolded_CP_v2_bis","unfolded_FISTA_bis","unfolded_ISTA_bis","unfolded_CP_bis"]
-        # table_net=[net_DnCNN,net_unfolded_CP_v3,net_unfolded_CP_v2,net_unfolded_FISTA,net_unfolded_ISTA,net_unfolded_CP,
-        #            net_unfolded_CP_v3_bis,net_unfolded_CP_v2_bis,net_unfolded_FISTA_bis,net_unfolded_ISTA_bis,net_unfolded_CP_bis]
+        # net_name = ["DnCNN","unfolded_CP","unfolded_ScCP","unfolded_FISTA","unfolded_ISTA","unfolded_CP",
+        #             "unfolded_CP_bis","unfolded_ScCP_bis","unfolded_FISTA_bis","unfolded_ISTA_bis","unfolded_CP_bis"]
+        # table_net=[net_DnCNN,net_unfolded_CP,net_unfolded_ScCP,net_unfolded_FISTA,net_unfolded_ISTA,net_unfolded_CP,
+        #            net_unfolded_CP_bis,net_unfolded_ScCP_bis,net_unfolded_FISTA_bis,net_unfolded_ISTA_bis,net_unfolded_CP_bis]
 
-        # net_name = ["DnCNN","unfolded_CP_v3","unfolded_CP_v2"]
-        # table_net=[net_DnCNN,net_unfolded_CP_v3,net_unfolded_CP_v2]
+        # net_name = ["DnCNN","unfolded_CP","unfolded_ScCP"]
+        # table_net=[net_DnCNN,net_unfolded_CP,net_unfolded_ScCP]
 
-        net_name = ["DnCNN","unfolded_CP_v2","unfolded_FISTA","unfolded_ISTA","unfolded_CP_v3"]
-        table_net=[net_DnCNN,net_unfolded_CP_v2,net_unfolded_FISTA,net_unfolded_ISTA,net_unfolded_CP_v3]
+        net_name = ["DnCNN","unfolded_ScCP","unfolded_FISTA","unfolded_ISTA","unfolded_CP"]
+        table_net=[net_DnCNN,net_unfolded_ScCP,net_unfolded_FISTA,net_unfolded_ISTA,net_unfolded_CP]
 
         for ind_rand in range(1):
             print('ID:',ind_rand)
@@ -495,28 +495,28 @@ def run(args):
                 #         theta *= norm
                 #     print('Theta of ISTA: ', theta)
                 #     net.norm =theta
-                # elif net_name[i]=='unfolded_CP_v2':
+                # elif net_name[i]=='unfolded_ScCP':
                 #      theta=1
                 #      for k in range(1,exp.net.K):
                 #         norm = calul_norm_CPv2(net=net,k=k,image=noise_im[None].to(exp.net.device))
                 #         # print('NORM of W ',k,': ',norm)
                 #         theta *= norm
-                #      print('Theta of CP_v2: ', theta)
+                #      print('Theta of ScCP: ', theta)
                 #      net.norm =theta
-                # elif net_name[i]=='unfolded_CP_v3':
+                # elif net_name[i]=='unfolded_CP':
                 #      theta=1
                 #      for k in range(1,exp.net.K):
                 #         norm = calul_norm_CPv3(net=net,k=k,image=noise_im[None].to(exp.net.device))
                 #         # print('NORM of W ',k,': ',norm)
                 #         theta *= norm
-                #      print('Theta of CP_v3: ', theta)
+                #      print('Theta of CP: ', theta)
                 #      net.norm =theta
                 # #         gc.collect()
                 # #         torch.cuda.empty_cache()
                 save_compare(exp,noisy=noise_im,original=org_im,model=args.model,namefile=namefile)
     elif args.model =='compare_diff_K':
-        net_name = ["DnCNN","unfolded_CP_v2","unfolded_FISTA","unfolded_ISTA","unfolded_CP","unfolded_CP_v3"]
-        table_net=[net_DnCNN,net_unfolded_CP_v2,net_unfolded_FISTA,net_unfolded_ISTA,net_unfolded_CP,net_unfolded_CP_v3]
+        net_name = ["DnCNN","unfolded_ScCP","unfolded_FISTA","unfolded_ISTA","unfolded_CP","unfolded_CP"]
+        table_net=[net_DnCNN,net_unfolded_ScCP,net_unfolded_FISTA,net_unfolded_ISTA,net_unfolded_CP,net_unfolded_CP]
 
         for ind_rand in range(199):
             print('ID:',ind_rand)
@@ -549,28 +549,28 @@ def run(args):
                 #         theta *= norm
                 #     print('Theta of ISTA: ', theta)
                 #     net.norm =theta
-                # elif net_name[i]=='unfolded_CP_v2':
+                # elif net_name[i]=='unfolded_ScCP':
                 #      theta=1
                 #      for k in range(1,exp.net.K):
                 #         norm = calul_norm_CPv2(net=net,k=k,image=noise_im[None].to(exp.net.device))
                 #         # print('NORM of W ',k,': ',norm)
                 #         theta *= norm
-                #      print('Theta of CP_v2: ', theta)
+                #      print('Theta of ScCP: ', theta)
                 #      net.norm =theta
-                # elif net_name[i]=='unfolded_CP_v3':
+                # elif net_name[i]=='unfolded_CP':
                 #      theta=1
                 #      for k in range(1,exp.net.K):
                 #         norm = calul_norm_CPv3(net=net,k=k,image=noise_im[None].to(exp.net.device))
                 #         # print('NORM of W ',k,': ',norm)
                 #         theta *= norm
-                #      print('Theta of CP_v3: ', theta)
+                #      print('Theta of CP: ', theta)
                 #      net.norm =theta
                 # #         gc.collect()
                 # #         torch.cuda.empty_cache()
                 save_compare(exp,noisy=noise_im,original=org_im,model=args.model,namefile=namefile)
     elif args.model =='compare_diff_F':
-        net_name = ["DnCNN","unfolded_CP_v2","unfolded_FISTA","unfolded_ISTA","unfolded_CP","unfolded_CP_v3"]
-        table_net=[net_DnCNN,net_unfolded_CP_v2,net_unfolded_FISTA,net_unfolded_ISTA,net_unfolded_CP,net_unfolded_CP_v3]
+        net_name = ["DnCNN","unfolded_ScCP","unfolded_FISTA","unfolded_ISTA","unfolded_CP","unfolded_CP"]
+        table_net=[net_DnCNN,net_unfolded_ScCP,net_unfolded_FISTA,net_unfolded_ISTA,net_unfolded_CP,net_unfolded_CP]
 
         for ind_rand in range(199):
             print('ID:',ind_rand)
@@ -603,21 +603,21 @@ def run(args):
                 #         theta *= norm
                 #     print('Theta of ISTA: ', theta)
                 #     net.norm =theta
-                # elif net_name[i]=='unfolded_CP_v2':
+                # elif net_name[i]=='unfolded_ScCP':
                 #      theta=1
                 #      for k in range(1,exp.net.K):
                 #         norm = calul_norm_CPv2(net=net,k=k,image=noise_im[None].to(exp.net.device))
                 #         # print('NORM of W ',k,': ',norm)
                 #         theta *= norm
-                #      print('Theta of CP_v2: ', theta)
+                #      print('Theta of ScCP: ', theta)
                 #      net.norm =theta
-                # elif net_name[i]=='unfolded_CP_v3':
+                # elif net_name[i]=='unfolded_CP':
                 #      theta=1
                 #      for k in range(1,exp.net.K):
                 #         norm = calul_norm_CPv3(net=net,k=k,image=noise_im[None].to(exp.net.device))
                 #         # print('NORM of W ',k,': ',norm)
                 #         theta *= norm
-                #      print('Theta of CP_v3: ', theta)
+                #      print('Theta of CP: ', theta)
                 #      net.norm =theta
                 # #         gc.collect()
                 # #         torch.cuda.empty_cache()
@@ -625,12 +625,12 @@ def run(args):
 
     else:
         print('Compare grid')
-        net_name = ["unfolded_FISTA","unfolded_ISTA","unfolded_CP","unfolded_CP_v2","unfolded_CP_v3"]
+        net_name = ["unfolded_FISTA","unfolded_ISTA","unfolded_CP","unfolded_ScCP","unfolded_CP"]
         # net_name = ["unfoled_FISTA"]
         # net_name = ["unfolded_ISTA"]
         # net_name = ["unfolded_CP"]
-        # net_name = ["unfolded_CP_v2"]
-        # net_name = ["unfolded_CP_v3"]
+        # net_name = ["unfolded_ScCP"]
+        # net_name = ["unfolded_CP"]
         ind_rand = 44
         print('ID:',ind_rand)
         noise_im = test_set[ind_rand][0]
@@ -639,10 +639,10 @@ def run(args):
         # for i,grid in enumerate([grid_FISTA]):
         # for i,grid in enumerate([grid_ISTA]):
         # for i,grid in enumerate([grid_CP]):
-        # for i,grid in enumerate([grid_CP_v2]):
-        # for i,grid in enumerate([grid_CP_v3]):
+        # for i,grid in enumerate([grid_ScCP]):
+        # for i,grid in enumerate([grid_CP]):
 
-        for i, grid in enumerate([grid_FISTA,grid_ISTA,grid_CP,grid_CP_v2,grid_CP_v3]):
+        for i, grid in enumerate([grid_FISTA,grid_ISTA,grid_CP,grid_ScCP,grid_CP]):
             for net in grid:
                 countparam = count_parameters(net,print_table=False,namenet=net_name[i]+'_F_'+str(net.F)+'_K_'+str(net.K))#
                 adam = torch.optim.Adam(net.parameters(), lr=args.lr)
@@ -672,21 +672,21 @@ def run(args):
                         theta *= norm
                     print('Theta of ISTA: ', theta.cpu().numpy())
                     net.norm =theta.cpu().numpy()
-                elif net_name[i]=='unfolded_CP_v2':
+                elif net_name[i]=='unfolded_ScCP':
                      theta=1
                      for k in range(1,exp.net.K):
                         norm = calul_norm_CPv2(net=net,k=k,image=noise_im[None].to(exp.net.device))
                         # print('NORM of W ',k,': ',norm)
                         theta *= norm
-                     print('Theta of CP_v2: ', theta.cpu().numpy())
+                     print('Theta of ScCP: ', theta.cpu().numpy())
                      net.norm =theta.cpu().numpy()
-                elif net_name[i]=='unfolded_CP_v3':
+                elif net_name[i]=='unfolded_CP':
                      theta=1
                      for k in range(1,exp.net.K):
                         norm = calul_norm_CPv3(net=net,k=k,image=noise_im[None].to(exp.net.device))
                         # print('NORM of W ',k,': ',norm)
                         theta *= norm
-                     print('Theta of CP_v3: ', theta.cpu().numpy())
+                     print('Theta of CP: ', theta.cpu().numpy())
                      net.norm =theta.cpu().numpy()
                 #         gc.collect()
                 #         torch.cuda.empty_cache()
