@@ -21,7 +21,8 @@ def run(args):
     noisy_np= np.transpose(noisy,(2,0,1))
     noisy_torch = torch.from_numpy(noisy_np).float()/255.
 
-    device= 'cuda' if  torch.cuda.is_available() else 'cpu'
+    # device= 'cuda' if  torch.cuda.is_available() else 'cpu'
+    device = 'cpu'
     if args.model == 'DnCNN':
         net = DnCNN(K=9, F=13).to(device)
     elif args.model == 'unfolded_ISTA':
@@ -32,6 +33,8 @@ def run(args):
         net = unfolded_ScCP(K=13, F=21).to(device)
     elif args.model == 'unfolded_CP':
         net = unfolded_CP(K=13, F=21).to(device)
+    else:
+        print('Error chosen model name')
 
     sigma = 50
     batch_size = 10
@@ -46,7 +49,7 @@ def run(args):
     denoised= net(noisy_torch[None].to(device))[0]
     denoised = denoised.to('cpu').detach().numpy()
     denoised = np.moveaxis(denoised, [0, 1, 2], [2, 0, 1])
-    print(denoised)
+
     if args.i is None:
         plt.figure(figsize=(10,5))
         ax1=plt.subplot(121)
@@ -68,14 +71,14 @@ def run(args):
         plt.imshow(noisy)
         plt.title('Noisy')
         plt.axis('off')
-        ax1.text(0.5,-0.1, 'PSNR: '+  str(format(PSNR_np(noisy,clean), '.2f')), size=12, ha="center", 
+        ax1.text(0.5,-0.1, 'PSNR: '+  str(format(PSNR_np(noisy/255.,clean), '.2f')), size=12, ha="center", 
             transform=ax1.transAxes)
         ax2=plt.subplot(133)
         plt.imshow(denoised)
         plt.axis('off')
         ax2.text(0.5,-0.1, 'PSNR: '+  str(format(PSNR_np(denoised,clean), '.2f')), size=12, ha="center", 
             transform=ax2.transAxes)
-        plt.title('Denoised')
+        plt.title(args.model+' Denoised')
         plt.show()
 
 if __name__ == '__main__':

@@ -114,7 +114,7 @@ class unfolded_FISTA(NNRegressor):
         y =  x-self.conv[2*K-1](u_prev)
         return y
 
-class unfolded_CP(NNRegressor):
+class unfolded_CPv0(NNRegressor):
 
     def __init__(self, K, F):
         super(unfolded_CP, self).__init__()
@@ -203,10 +203,10 @@ class unfolded_ScCP(NNRegressor):
         # K-th layer
         return x1
 
-class unfolded_CP_v3(NNRegressor):
+class unfolded_CP(NNRegressor):
 
     def __init__(self, K, F):
-        super(unfolded_CP_v3, self).__init__()
+        super(unfolded_CP, self).__init__()
         self.K = K
         self.F = F
         self.norm_net=0
