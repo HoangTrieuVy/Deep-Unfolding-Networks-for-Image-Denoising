@@ -29,9 +29,11 @@ Choose a pretrained model among {*DnCNN*, *unfolded_ISTA*, *unfolded_FISTA*, *un
   
 **Inference Settings**
  ```python
---model: DnCNN, unfolded_ISTA, unfolded_FISTA, unfolded_CP, unfolded_ScCP
---i    : original image path (default=None)
---n    : noisy image path
+optional arguments:
+  -h, --help     show this help message and exit
+  --model MODEL  DnCNN,unfolded_ISTA, unfolded_FISTA, unfolded_CP, unfolded_ScCP
+  --i I          original impage path
+  --n N          noisy impage path
  ```
 
 
