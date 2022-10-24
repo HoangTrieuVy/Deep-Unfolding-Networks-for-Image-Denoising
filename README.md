@@ -43,7 +43,7 @@ cd examples
 python example.py --model ScCP --i 10081_noisy.jpg
 ```
 
-<img align="center" width="500" src="https://github.com/HoangTrieuVy/Deep-Unfolding-Networks-for-Image-Denoising/blob/main/examples/10081_result.jpg" >
+<img align="center" width="1500" src="https://github.com/HoangTrieuVy/Deep-Unfolding-Networks-for-Image-Denoising/blob/main/examples/10081_result.jpg" >
 
 
 </details>
