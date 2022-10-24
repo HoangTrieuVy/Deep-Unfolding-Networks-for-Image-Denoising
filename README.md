@@ -37,8 +37,8 @@ Choose a pretrained model among {*DnCNN*, *unfolded_ISTA*, *unfolded_FISTA*, *un
 
 ```python
 cd examples
-
-python example.py --model DnCNN --i 10081_noisy.jpg
+   
+python example.py --model ScCP --i 10081_noisy.jpg
 ```
 
 <img align="center" width="500" src="https://github.com/HoangTrieuVy/Deep-Unfolding-Networks-for-Image-Denoising/blob/main/examples/10081_result.jpg" >
