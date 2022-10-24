@@ -39,6 +39,8 @@ Choose a pretrained model among {*DnCNN*, *unfolded_ISTA*, *unfolded_FISTA*, *un
 
 
 ```python
+cd examples
+
 python deep_unfolding_denoiser_sig50.py --model DnCNN --F 13 --K 9 --sigma 50 --batch_size 10 --num_epochs 500
 
 python deep_unfolding_denoiser_sig50.py --model unfolded_ISTA --F 21 --K 13 --sigma 50 --batch_size 10 --num_epochs 500
