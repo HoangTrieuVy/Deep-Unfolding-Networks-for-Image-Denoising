@@ -29,28 +29,16 @@ Choose a pretrained model among {*DnCNN*, *unfolded_ISTA*, *unfolded_FISTA*, *un
   
 **Inference Settings**
  ```python
- model: DnCNN, unfolded_ISTA, unfolded_FISTA, unfolded_CP_v2, unfolded_CP_v3
- F       # size of linear operator or number of features of convolution operators
- K       # depth of networks
- sigma   # noise-level (default=50)
- batch_size (default=10)
- lr      # learning-rate (default=1e-4)
+--model: DnCNN, unfolded_ISTA, unfolded_FISTA, unfolded_CP, unfolded_ScCP
+--i    : original image path (default=None)
+--n    : noisy image path
  ```
 
 
 ```python
 cd examples
 
-python deep_unfolding_denoiser_sig50.py --model DnCNN --F 13 --K 9 --sigma 50 --batch_size 10 --num_epochs 500
-
-python deep_unfolding_denoiser_sig50.py --model unfolded_ISTA --F 21 --K 13 --sigma 50 --batch_size 10 --num_epochs 500
-
-python deep_unfolding_denoiser_sig50.py --model unfolded_FISTA --F 21 --K 13 --sigma 50 --batch_size 10 --num_epochs 500
-
-python deep_unfolding_denoiser_sig50.py --model unfolded_CP_v2 --F 21 --K 13 --sigma 50 --batch_size 10 --num_epochs 500
-
-python deep_unfolding_denoiser_sig50.py --model unfolded_CP_v3 --F 21 --K 13 --sigma 50 --batch_size 10 --num_epochs 500
-
+python example.py --model DnCNN --i 10081_noisy.jpg
 ```
 
 <img align="center" width="500" src="https://github.com/HoangTrieuVy/Deep-Unfolding-Networks-for-Image-Denoising/blob/main/examples/10081_result.jpg" >
