@@ -2,14 +2,14 @@
 
 > **Hoang Trieu Vy Le, [Nelly Pustelnik](https://perso.ens-lyon.fr/nelly.pustelnik/), [Marion Foare](https://perso.ens-lyon.fr/marion.foare/),**
 *The faster proximal algorithm, the better unfolded deep learning architecture ? The study case of image denoising,*
-EUSIPCO 2022, [Download](https://hal.archives-ouvertes.fr/hal-03621538/document)
+EUSIPCO  Belgrade, Serbie, 29 Aug - 2 Sept. 2022, [Download](https://hal.archives-ouvertes.fr/hal-03621538/document)
 
 ## <div align="center">Quick start Examples </div>
 
 <details open>
 <summary>Install</summary>
 
-Clone repo and install [requirements.txt](https://github.com/HoangTrieuVy/Deep-Unfolding-Networks-for-Image-Denoising/blob/main/requirements.txt) in a
+Clone the repository and install [requirements.txt](https://github.com/HoangTrieuVy/Deep-Unfolding-Networks-for-Image-Denoising/blob/main/requirements.txt) in a
 [**Python>=3.7.0**](https://www.python.org/) environment, including
 [**PyTorch>=1.7**](https://pytorch.org/get-started/locally/).
 
@@ -24,8 +24,20 @@ pip install -r requirements.txt  # install
 </details>
 <details open>
 <summary>Inference Denoiser</summary>
-   
-Choose a pretrained model among {*DnCNN*, *unfolded_ISTA*, *unfolded_FISTA*, *unfolded_CP_v2* (strong convexity), *unfolded_CP_v3*(without SC)} in [Checkpoints](https://github.com/HoangTrieuVy/Deep-Unfolding-Networks-for-Image-Denoising/tree/main/checkpoints) and unfolding networks contains various parameters which are:
+Pretrained Pytorch code to perform image denoising considering either *DnCNN* or the unfolded schemes proposed in our EUSIPCO paper: *unfolded_ISTA*, *unfolded_FISTA*,  *unfolded_CP*(without SC), *unfolded_ScCP* (strong convexity)}.
+
+
+<summary>Remarks</summary>
+
+* Pretrained models can be found in [Checkpoints](https://github.com/HoangTrieuVy/Deep-Unfolding-Networks-for-Image-Denoising/tree/main/checkpoints).
+* The pretrained DnCNN contains F=9 and K=13
+* The pretrained unfolded_ISTA contains F=21 and K= 13
+* The pretrained unfolded_FISTA contains F=21 and K= 13
+* The pretrained unfolded_CP contains F=21 and K= 13
+* The pretrained unfolded_ScCP contains F=21 and K= 13
+* All the pretrained architectures listed above are comparable in terms of number of neurons.
+* In our experiments, the most efficient scheme is unfolded_ScCP so we advise the user to denoise with this unfolded scheme.
+
   
 **Inference Settings**
  ```python
