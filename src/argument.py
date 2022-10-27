@@ -18,6 +18,7 @@ def parse():
     parser.add_argument('--test_image_size', type=tuple, default=(320, 320))
     parser.add_argument('--batch_size'     , type=int, default=10)
     parser.add_argument('--sigma'           , type=int)
+
     return parser.parse_args()
 
 def parse_for_test():
@@ -25,6 +26,8 @@ def parse_for_test():
     parser.add_argument('--model',type=str,default='DnCNN',help='DnCNN,unfolded_ISTA, unfolded_FISTA, unfolded_CP, unfolded_ScCP')
     parser.add_argument('--i',type=str,help='original impage path',default=None)
     parser.add_argument('--n',type=str,help='noisy impage path',default=None)
+    parser.add_argument('--saveresults',type=bool,help='Save results fig',default=False)
+
     return parser.parse_args()
 class Args():
     '''
