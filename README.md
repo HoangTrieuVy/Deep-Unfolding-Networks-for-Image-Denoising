@@ -24,7 +24,7 @@ pip install -r requirements.txt  # install
 </details>
 <details open>
 <summary>Inference Denoiser</summary>
-Pretrained Pytorch code to perform image denoising considering either *DnCNN* or the unfolded schemes proposed in our EUSIPCO paper: *unfolded_ISTA*, *unfolded_FISTA*,  *unfolded_CP*(without SC), *unfolded_ScCP* (strong convexity)}.
+Pretrained Pytorch code to perform image denoising considering either **DnCNN** or the unfolded schemes proposed in our EUSIPCO paper: **unfolded_ISTA**, **unfolded_FISTA**,  **unfolded_CP**(without SC), **unfolded_ScCP** (strong convexity)}.
 
 
 <summary>Remarks</summary>
@@ -52,7 +52,7 @@ optional arguments:
 ```python
 cd examples
    
-python example.py --model ScCP --i 10081_noisy.jpg
+python example.py --model unfolded_ScCP --i 10081.jpg --n 10081_noisy.jpg
 ```
 
 <img align="center" width="1500" src="https://github.com/HoangTrieuVy/Deep-Unfolding-Networks-for-Image-Denoising/blob/main/examples/10081_result.jpg" >
