@@ -49,9 +49,9 @@ def run(args):
     denoised= net(noisy_torch[None].to(device))[0]
     denoised = denoised.to('cpu').detach().numpy()
     denoised = np.moveaxis(denoised, [0, 1, 2], [2, 0, 1])
-
+    sf=plt.figure(figsize=(10,5))
     if args.i is None:
-        plt.figure(figsize=(10,5))
+        
         ax1=plt.subplot(121)
         plt.imshow(noisy)
         plt.title('Noisy')
@@ -60,9 +60,9 @@ def run(args):
         plt.imshow(denoised)
         plt.axis('off')
         plt.title(args.model+' denoiser')
+        
         plt.show()
     else:
-        plt.figure(figsize=(10,5))
         plt.subplot(131)
         plt.imshow(clean)
         plt.axis('off')
@@ -80,7 +80,7 @@ def run(args):
             transform=ax2.transAxes)
         plt.title(args.model+' Denoised')
         plt.show()
-
+    sf.savefig('results_'+args.n,bbox_inches='tight',pad_inches = 0)
 if __name__ == '__main__':
     args = parse_for_test()
     run(args)
