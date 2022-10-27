@@ -80,7 +80,8 @@ def run(args):
             transform=ax2.transAxes)
         plt.title(args.model+' Denoised')
         plt.show()
-    sf.savefig('results_'+args.n,bbox_inches='tight',pad_inches = 0)
+    if args.saveresults is True:
+        sf.savefig('results_'+args.model+'_'+args.n,bbox_inches='tight',pad_inches = 0)
 if __name__ == '__main__':
     args = parse_for_test()
     run(args)
