@@ -52,7 +52,7 @@ optional arguments:
 ```python
 cd examples
    
-python example.py --model unfolded_ScCP --i 10081.jpg --n 10081_noisy.jpg
+python unrolled_NN_denoiser.py --model unfolded_ScCP --i 10081.jpg --n 10081_noisy.jpg
 ```
 
 <img align="center" width="1500" src="https://github.com/HoangTrieuVy/Deep-Unfolding-Networks-for-Image-Denoising/blob/main/examples/results_unfolded_ScCP_10081_noisy.jpg" >
