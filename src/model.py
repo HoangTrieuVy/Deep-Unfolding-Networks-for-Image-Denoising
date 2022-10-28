@@ -90,7 +90,7 @@ class unfolded_FISTA(NNRegressor):
             self.conv.append(nn.Conv2d(F, 3, 3, padding=1,bias=False))
 
         x=np.ones(K)
-        self.multip = nn.Parameter(torch.tensor(x,requires_grad=True,dtype=torch.float).cuda())
+        self.multip = nn.Parameter(torch.tensor(x,requires_grad=True,dtype=torch.float))
 
         # apply He's initialization
         for i in range(K):
@@ -128,8 +128,8 @@ class unfolded_CPv0(NNRegressor):
             self.conv.append(nn.Conv2d(F, F, 3, padding=1,bias=False))
 
         clone=np.ones(K)
-        self.alpha = nn.Parameter(torch.tensor(clone,requires_grad=True,dtype=torch.float).cuda())
-        self.sigma = nn.Parameter(torch.tensor(clone,requires_grad=True,dtype=torch.float).cuda())
+        self.alpha = nn.Parameter(torch.tensor(clone,requires_grad=True,dtype=torch.float))
+        self.sigma = nn.Parameter(torch.tensor(clone,requires_grad=True,dtype=torch.float))
 
         # apply He's initialization
         for i in range(K):
@@ -171,8 +171,8 @@ class unfolded_ScCP(NNRegressor):
 
         x=np.ones(K)
         gamma = 1
-        self.sigma = nn.Parameter(torch.tensor(x,requires_grad=True,dtype=torch.float).cuda())
-        self.alpha = nn.Parameter(torch.tensor(x,requires_grad=True,dtype=torch.float).cuda())
+        self.sigma = nn.Parameter(torch.tensor(x,requires_grad=True,dtype=torch.float))
+        self.alpha = nn.Parameter(torch.tensor(x,requires_grad=True,dtype=torch.float))
 
         # apply He's initialization
         for i in range(K):
@@ -218,7 +218,7 @@ class unfolded_CP(NNRegressor):
 
         x=np.ones(K)
         gamma = 1
-        self.sigma = nn.Parameter(torch.tensor(x,requires_grad=True,dtype=torch.float).cuda())
+        self.sigma = nn.Parameter(torch.tensor(x,requires_grad=True,dtype=torch.float))
         # apply He's initialization
         for i in range(K):
             nn.init.kaiming_normal_(

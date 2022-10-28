@@ -21,8 +21,8 @@ def run(args):
     noisy_np= np.transpose(noisy,(2,0,1))
     noisy_torch = torch.from_numpy(noisy_np).float()/255.
 
-    # device= 'cuda' if  torch.cuda.is_available() else 'cpu'
-    device = 'cpu'
+    device= 'cuda' if  torch.cuda.is_available() else 'cpu'
+    #device = 'cpu'
     if args.model == 'DnCNN':
         net = DnCNN(K=9, F=13).to(device)
     elif args.model == 'unfolded_ISTA':
