@@ -49,9 +49,11 @@ optional arguments:
  ```
 
 
-```python
+```bash
 cd examples
-   
+
+python unrolled_NN_denoiser.py --model [choice_of_model]  --n [your_noisy_image]
+
 python unrolled_NN_denoiser.py --model unfolded_ScCP --i 10081.jpg --n 10081_noisy.jpg
 ```
 
